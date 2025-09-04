@@ -1,0 +1,242 @@
+{
+  "info": {
+    "name": "EventX Studio API",
+    "_postman_id": "a1f0a6f2-5e69-4bdc-8ab3-000000000000",
+    "description": "Collection for EventX backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/auth/register",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Test\", \"email\": \"test@example.com\", \"password\": \"Test@123\"}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/auth/login",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"admin@eventx.local\", \"password\": \"Admin@123\"}"
+        }
+      }
+    },
+    {
+      "name": "Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/auth/me",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "auth",
+            "me"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List Events",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base}}/events",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "events"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Event (admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/events",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "events"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Sample Event\", \"description\": \"desc\", \"date\": \"2030-01-01T10:00:00.000Z\", \"venue\": \"Hall A\", \"price\": 50, \"totalSeats\": 20, \"status\": \"published\"}"
+        }
+      }
+    },
+    {
+      "name": "Book Tickets",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/tickets/book",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "tickets",
+            "book"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"eventId\": \"<replace>\", \"seats\": [\"A1\", \"A2\"]}"
+        }
+      }
+    },
+    {
+      "name": "My Tickets",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/tickets/my",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "tickets",
+            "my"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Check In (admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/tickets/check-in",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "tickets",
+            "check-in"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"token\": \"<qrToken_from_ticket>\"}"
+        }
+      }
+    },
+    {
+      "name": "Analytics Summary",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base}}/analytics/summary",
+          "host": [
+            "{{base}}"
+          ],
+          "path": [
+            "analytics",
+            "summary"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "http://localhost:8080/api/v1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: EventX Studio API
+  version: "1.0.0"
+servers:
+  - url: /api/v1
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '201':
+          description: Created
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: OK
+  /auth/me:
+    get:
+      summary: Get current user
+      responses:
+        '200': { description: OK }
+  /events:
+    get:
+      summary: List events (public)
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string, enum: [draft,published,closed] }
+        - in: query
+          name: page
+          schema: { type: integer }
+        - in: query
+          name: limit
+          schema: { type: integer }
+      responses: { '200': { description: OK } }
+    post:
+      summary: Create event (admin)
+      responses: { '201': { description: Created } }
+  /events/{id}:
+    get:
+      summary: Get event details
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+    put:
+      summary: Update event (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+    delete:
+      summary: Delete event (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /events/{id}/publish:
+    post:
+      summary: Publish event (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /tickets/book:
+    post:
+      summary: Book tickets (user)
+      responses: { '201': { description: Created } }
+  /tickets/my:
+    get:
+      summary: My tickets (user)
+      responses: { '200': { description: OK } }
+  /tickets/{id}:
+    get:
+      summary: Get a ticket (owner/admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /tickets/check-in:
+    post:
+      summary: Check-in ticket (admin via QR token)
+      responses: { '200': { description: OK } }
+  /analytics/summary:
+    get:
+      summary: Summary metrics (admin)
+      responses: { '200': { description: OK } }
+  /analytics/demographics:
+    get:
+      summary: Demographic charts data (admin)
+      responses: { '200': { description: OK } }
+  /analytics/events/{id}:
+    get:
+      summary: Per-event summary (admin)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses: { '200': { description: OK } }
+  /analytics/export:
+    get:
+      summary: Export CSV (admin)
+      parameters:
+        - in: query
+          name: type
+          schema: { type: string, enum: [sales,events] }
+      responses: { '200': { description: OK } }
+components:
+  schemas:
+    Register:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string }
+        password: { type: string }
+    Login:
+      type: object
+      properties:
+        email: { type: string }
+        password: { type: string }

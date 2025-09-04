@@ -1,0 +1,24 @@
+# Render Environment Variables Configuration
+# Copy these to your Render Web Service Environment Variables
+
+NODE_ENV=production
+PORT=10000
+
+# MongoDB Connection (your existing connection)
+MONGODB_URI=mongodb+srv://nahed:1234@cluster0.fjzjizj.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0
+
+# JWT Configuration (update with secure secrets)
+JWT_SECRET=your-production-jwt-secret-should-be-at-least-32-characters-long
+JWT_EXPIRES_IN=7d
+QR_SECRET=your-production-qr-secret-should-be-at-least-32-characters-long
+QR_EXPIRES_IN=300d
+
+# SMTP Configuration (update with your email provider)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+FROM_EMAIL=EventX <your-email@gmail.com>
+
+# Client URL (your Netlify frontend)
+CLIENT_URL=https://majestic-gaufre-96f16a.netlify.app
