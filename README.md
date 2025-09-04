@@ -2,11 +2,6 @@
 
 A comprehensive event management platform built with modern web technologies. EventX Studio enables seamless event creation, ticket booking, and real-time notifications for both organizers and attendees.
 
-![EventX Studio](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-![React](https://img.shields.io/badge/React-19.1.1-blue)
-![MongoDB](https://img.shields.io/badge/MongoDB-8.18-green)
-
 ## 🌟 Features
 
 - **Event Management**: Create, publish, and manage events with admin dashboard
